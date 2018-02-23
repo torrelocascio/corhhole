@@ -9,6 +9,11 @@ var bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 
+// Authentication / Authorization
+const passport = require('passport');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
 mongoose.connect('mongodb://localhost:27017/ironfunds-development');
 
 var index = require('./routes/index');
@@ -31,6 +36,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Sessions
+app.use(session({
+  secret: 'ironfundingdev',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore( { mongooseConnection: mongoose.connection })
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Authentication Configuration
 app.use( (req, res, next) => {
