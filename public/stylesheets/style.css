@@ -96,3 +96,62 @@ nav.navbar {
   color: black;
   font-size: 1.1em;
 }
+
+.campaign-image {
+  width: 100%;
+  height: 500px;
+}
+
+.campaign-total {
+  font-size: 1.9em;
+  color: #05AF3C;
+}
+
+.light-text {
+  color: #626369;
+}
+
+.large-strong {
+  font-size: 1.4em;
+}
+
+progress {
+  width: 100%;
+}
+
+.campaign-info div {
+  margin-bottom: 15px;
+}
+
+.campaign-container .row {
+  padding: 35px 0;
+}
+
+.backer-btn {
+  background-color: #25CB68;
+  border-radius: 3px;
+  border: 1px solid black;
+  color: white;
+  width: 300px;
+  height: 75px;
+  padding: 2.4rem 4.8rem;
+  font-size: 1.8rem;
+}
+
+.backer-btn:hover {
+  color: white;
+  background-color: #05AF3C;
+}
+
+.campaign-category {
+  font-size: 1.4rem;
+  border: 1px solid black;
+  padding: 10px 0;
+  text-align: center;
+  float: right;
+  width: 70px;
+}
+
+.campaign-description {
+  padding-right: 275px;
+}

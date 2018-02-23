@@ -32,4 +32,16 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
     }); 
 });
 
+// Show Individual Routes
+router.get('/:id', (req, res, next) => {
+    Campaign.findById(req.params.id, (err, campaign) => {
+        if (err) { return next(err) }
+
+        campaign.populate('_creator', (err, campaign) => {
+            if (err) { return next(err) }
+            return res.render('campaigns/show', { campaign });
+        });
+    });
+});
+
 module.exports = router;

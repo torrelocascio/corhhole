@@ -13,4 +13,10 @@ const CampaignSchema = new Schema({
     deadline        : { type: Date, required: true }
 });
 
+CampaignSchema.virtual('timeRemaining').get(function () {
+    let remaining = moment(this.deadline).fromNow(true).split(' ');
+    let [days, unit] = remaining;
+    return { days, unit };
+});
+
 module.exports = mongoose.model('Campaign', CampaignSchema);
