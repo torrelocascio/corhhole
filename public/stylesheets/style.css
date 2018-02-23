@@ -39,6 +39,8 @@ nav.navbar {
 
 .btn-logout {
   color: black;
+  padding: 15px;
+  border: 0;
 }
 
 .home-heading {
