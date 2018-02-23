@@ -24,6 +24,7 @@ mongoose.connect('mongodb://localhost:27017/ironfunds-development');
 var index = require('./routes/index');
 var users = require('./routes/users');
 const authRoutes = require('./routes/authentication.js');
+const campaignRoutes = require('./routes/campaigns.js');
 
 var app = express();
 
@@ -130,6 +131,7 @@ app.use( (req, res, next) => {
 app.use('/', index);
 app.use('/users', users);
 app.use('/', authRoutes);
+app.use('/campaigns', campaignRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,30 +2,33 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
+// connect-ensure-login Configuration
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+
 // Display Login Form
-router.get('/login', (req, res) => {
+router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login');
 });
 
 // Handle Submission of Login Form 
-router.post('/login', passport.authenticate('local-login', {
+router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
     successRedirect     : '/',
     failureRedirect     : '/login'
 }));
 
 // Display Signup Form
-router.get('/signup', (req, res) => {
+router.get('/signup', ensureLoggedOut(), (req, res) => {
     res.render('authentication/signup');
 });
 
 // Handle Submission of Signup Form
-router.post('/signup', passport.authenticate('local-signup', {
+router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
     successRedirect     : '/',
     failureRedirect     : '/signup'
 }));
 
 // Handle Logout
-router.post('/logout', (req, res) => {
+router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
     res.redirect('/');
 });
