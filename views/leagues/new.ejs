@@ -1,0 +1,41 @@
+<div class="container">
+  <div class ="newTeam">
+   <div class ="row">
+      <div class="col-sm-6 centered-form">
+        <form action="/new" method="post">
+    
+          <div class="form-group">
+            <label for="leagueName">LeagueName</label>
+            <input type="text" name="leagueName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="teamName">Team Name</label>
+            <input type="text" name="leagueName" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="playerName1">Player 1 Name</label>
+              <input type="text" name="player1Name" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="playerName2">Player 2 Name</label>
+              <input type="text" name="player2Name" class="form-control">
+          </div>
+          <div class="form-group">
+              <button>Delete Team</button>
+            </div>
+          <div class="form-group">
+                <label for="description">Team Description</label>
+                <textarea id="description" name="description" class="form-control"></textarea>
+          </div>
+         </div>
+    </div>
+  
+          <div class="form-group">
+            <button>Add Team</button>
+          </div>
+          
+  </div>
+       
+        <button action="/new" type="submit">Finalize League</button>
+  </div>
+</div>

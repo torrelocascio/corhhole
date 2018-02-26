@@ -1,0 +1,38 @@
+<div class="container campaign-container">
+    <div class="row">
+      <div class="col-sm-2">
+        <img src="https://ksr-ugc.imgix.net/assets/007/188/910/68df9ec3603e3f3138bed402dea3cab2_original.jpg?w=80&h=80&fit=crop&v=1466566705&auto=format&q=92&s=eff05acf65569368cc99f6363722fe60"><br>
+        By: <strong><%= league.leagueName %></strong>
+      </div>
+      <div class="col-sm-10">
+        <h1><%= league.leagueName %></h1>
+        <h2 class="campaign-category"><%= league.schedule %></h2>
+        <p class="campaign-description"><%= league.description %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+      </div>
+      <div class="col-sm-4 campaign-info">
+        <div class="campaign-progress">
+          <progress value="<%= league.leagueName %>" max="<%= league.leagueName %>"></progress>
+        </div>
+        <div class="campaign-pledged">
+          <span class="campaign-total">$<%= league.leagueName %></span><br>
+          <span class="light-text">
+            pledged of
+            $<%= league.leagueName %></span> goal
+          </span>
+        </div>
+        <div class="campaign-backers">
+          <strong class="large-strong"><%= league.leagueName %></strong><br>
+          <span class="light-text">backers</span>
+        </div>
+        <div class="campaign-time">
+          <strong class="large-strong"><%= league.leagueName %></strong><br>
+          <span class="light-text"><%= league.leagueName %> to go.</span>
+        </div>
+        <a class="btn backer-btn" href="/leagues/<%= league._id%>">Edit This</a>
+      </div>
+    </div>
+  </div>

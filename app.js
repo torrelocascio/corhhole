@@ -19,12 +19,12 @@ const LocalStrategy = require('passport-local').Strategy;
 const User          = require('./models/user');
 const bcrypt        = require('bcrypt');
 
-mongoose.connect('mongodb://localhost:27017/ironfunds-development');
+mongoose.connect('mongodb://localhost:27017/cornhole');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 const authRoutes = require('./routes/authentication.js');
-const campaignRoutes = require('./routes/campaigns.js');
+const leagueRoutes = require('./routes/leagues.js');
 
 var app = express();
 
@@ -131,7 +131,7 @@ app.use( (req, res, next) => {
 app.use('/', index);
 app.use('/users', users);
 app.use('/', authRoutes);
-app.use('/campaigns', campaignRoutes);
+app.use('/', leagueRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

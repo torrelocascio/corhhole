@@ -10,15 +10,15 @@
 
 <div class="campaign-row row">
   <h3 class="text-center">You may be interested in...</h3>
-  <% campaigns.forEach((campaign) => { %>
+  <% leagues.forEach((league) => { %>
     <div class="col-sm-3 home-campaign-box">
-      <img src="<%= campaign.image %>">
+      <img src="<%= league.image %>">
       <div class="campaign-info-wrapper">
-        <a class="title" href="/campaigns/<%= campaign._id %>">
-          <strong><%= campaign.title %></strong>
+        <a class="title" href="/leagues/<%= league._id %>">
+          <strong><%= league.leagueName %></strong>
         </a><br>
-        by <span class="light-text"><%= campaign._creator.username %></span><br>
-        <span class="light-text description"><%= campaign.description %></span>
+        by <span class="light-text"><%= league.leagueName %></span><br>
+        <span class="light-text description"><%= league.description %></span>
       </div>
     </div>
   <%  }) %>

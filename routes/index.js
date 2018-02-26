@@ -1,15 +1,15 @@
 var express = require('express');
 var router = express.Router();
-const Campaign = require('../models/campaign');
+const League = require('../models/league');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Campaign
-    // Retrieve all existing campaigns
+  League
+    // Retrieve all existing leagues
     .find({})
     .populate('_creator')
-    .exec((err, campaigns) => {
-      res.render('index', { campaigns });
+    .exec((err, leagues) => {
+      res.render('index', { leagues });
     });
 });
 
