@@ -18,7 +18,7 @@
           <progress value="<%= league.leagueName %>" max="<%= league.leagueName %>"></progress>
         </div>
         <div class="campaign-pledged">
-          <span class="campaign-total">$<%= league.leagueName %></span><br>
+          <span class="campaign-total">Team1<%= league.leagueName %></span><br>
           <span class="light-text">
             pledged of
             $<%= league.leagueName %></span> goal
@@ -32,7 +32,10 @@
           <strong class="large-strong"><%= league.leagueName %></strong><br>
           <span class="light-text"><%= league.leagueName %> to go.</span>
         </div>
-        <a class="btn backer-btn" href="/leagues/<%= league._id%>">Edit This</a>
+        <a class="btn backer-btn" href="/leagues/<%=league._id%>/edit">Edit This</a>
+        <form action="/leagues/<%= league._id %>/delete" method="POST">
+          <button type="submit" class="btn backer-btn" style="background-color:red">Delete Product</button>
+        </form>
       </div>
     </div>
   </div>

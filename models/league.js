@@ -6,10 +6,11 @@ const Team = require('./team');
 const LeagueSchema = new Schema({
     leagueName      : { type: String, required: true },
     description     : { type: String, required: true },
+    _creator        : { type: Schema.Types.ObjectId, ref: 'User', required: true },
     // category        : { type: String, enum: TYPES, required: true },
     // _creator        : {ref: 'User', required: true },
-     numberOfTeams  : { type: Number},
-    //  team               : {type: Schema.team}
+    teams          : [Team.schema]
+    //  tean   mm               : {type: Schema.team}
 });
 
 // Date Formatting
