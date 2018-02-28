@@ -4,12 +4,12 @@ const moment = require('moment');
 const Team = require('./team');
 
 const LeagueSchema = new Schema({
-    leagueName      : { type: String, required: true },
-    description     : { type: String, required: true },
+    leagueName      : { type: String, required: [true, 'League Name is Required'] },
     _creator        : { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    teams           : [],
+    schedule        : [[]],
     // category        : { type: String, enum: TYPES, required: true },
     // _creator        : {ref: 'User', required: true },
-    teams          : [Team.schema]
     //  tean   mm               : {type: Schema.team}
 });
 
