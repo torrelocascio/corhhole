@@ -29,8 +29,8 @@ nav.navbar {
 }
 
 .nav-logo-image {
-  height: 50px;
-  width: 500px;
+  height: 30px;
+  width: 250px;
 
 }
 
@@ -64,19 +64,19 @@ nav.navbar {
 }
 .home-heading-wrapper > h1 {
   font-size: 9rem;
-  -webkit-text-stroke: 1px black;
+  -webkit-text-stroke: 1px rgb(252, 7, 7);
   color:rgb(240,240,240);
   text-shadow:
-      3px 3px 0 rgb(253,159,67),
-    -1px -1px 0 rgb(253,159,67),  
-     1px -1px 0 rgb(253,159,67),
-     -1px 1px 0 rgb(253,159,67),
-      1px 1px 0 rgb(253,159,67);
+      3px 3px 0 rgb(252, 7, 7),
+    -1px -1px 0 rgb(252, 7, 7), 
+     1px -1px 0 rgb(252, 7, 7),
+     -1px 1px 0 rgb(252, 7, 7),
+      1px 1px 0 rgb(252, 7, 7),
 }
 
 .home-heading-wrapper > p {
   font-size: 3rem;
-  -webkit-text-stroke: 1px rgb(253,159,67);
+  -webkit-text-stroke: 1px rgb(67, 86, 253);
   color: white
 
 }

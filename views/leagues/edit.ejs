@@ -32,3 +32,21 @@
         </ul>
     </div>
 <% } %>
+
+<ul>
+        
+    <% league.schedule.forEach((game) => { %>
+          <% game.forEach(pair => { %><br>
+          
+            <% pair.forEach(teams => { %> --------
+            <%=teams.teamName%>                       <label class="radio-inline">
+                <input type="radio" name="optradio">Wins
+              </label>
+            <% }) %>
+            <% }) %>
+            
+          
+            
+        </li>
+    <% }) %>
+</ul>

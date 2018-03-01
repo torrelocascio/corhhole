@@ -1,22 +1,50 @@
 <div class="container campaign-container">
     <div class="row">
       <div class="col-sm-2">
-        <img src="https://ksr-ugc.imgix.net/assets/007/188/910/68df9ec3603e3f3138bed402dea3cab2_original.jpg?w=80&h=80&fit=crop&v=1466566705&auto=format&q=92&s=eff05acf65569368cc99f6363722fe60"><br>
-        By: <strong><%= league.leagueName %></strong>
+       
+        League Name <strong><%= league.leagueName %></strong>
       </div>
       <div class="col-sm-10">
-        <h1><%= league.leagueName %></h1>
-        <h2 class="campaign-category"><%= league.schedule %></h2>
-        <p class="campaign-description"><%= league.description %></p>
+        <h1><%= league.leagueName %> Standings</h1>
+        <% league.teams.forEach((team)=>{ %>
+         <li>Team Name: <%= team.teamName%> <% %> , 
+          Wins: <%=team.wins%> 
+          , Losses: <%=team.losses%>
+          <%})%>
+  
+        </li>
       </div>
     </div>
     <div class="row">
+      <h2>Update Games</h2> <button>Edit</button>
         <ul>
+        
             <% league.schedule.forEach((game) => { %>
-                <li>
-                    <p><%=game%></p>
+                  <% game.forEach(pair => { %> 
+                  
+                    <% pair.forEach(teams => { %>
+                    <%=teams.teamName%>                       
+                    ------------
+                    <% }) %>
+                   
+                    <form action="/leagues/<%=league._id%>/submitgame" method="POST">
+                    <input type="radio" id="contactChoice1"
+                    name="contact" value="homeTeamWins">
+                   <label for="contactChoice1"><%=pair[0].teamName%> Wins</label>
+               
+                   <input type="radio" id="contactChoice2"
+                    name="contact" value="awayTeamWins">
+                   <label for="contactChoice2"><%=pair[1].teamName%> Wins</label>
+                   <input type="radio" id="contactChoice2"
+                   name="contact" value="unplayed">
+                  <label for="contactChoice2">Game Not Played</label>
+                  <button type="submit">Submit</button>
+                  </form>
+                    <% }) %>
                     
-                </li>
+                  
+                    
+                
             <% }) %>
         </ul>
       <div class="col-sm-8">
