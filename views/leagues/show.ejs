@@ -11,6 +11,14 @@
       </div>
     </div>
     <div class="row">
+        <ul>
+            <% league.schedule.forEach((game) => { %>
+                <li>
+                    <p><%=game%></p>
+                    
+                </li>
+            <% }) %>
+        </ul>
       <div class="col-sm-8">
       </div>
       <div class="col-sm-4 campaign-info">

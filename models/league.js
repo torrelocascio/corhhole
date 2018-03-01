@@ -7,7 +7,7 @@ const LeagueSchema = new Schema({
     leagueName      : { type: String, required: [true, 'League Name is Required'] },
     _creator        : { type: Schema.Types.ObjectId, ref: 'User'},
     teams           : [Team.schema],
-    schedule        : [[]],
+    schedule        : [[]]
     // category        : { type: String, enum: TYPES, required: true },
     // _creator        : {ref: 'User', required: true },
     //  tean   mm               : {type: Schema.team}

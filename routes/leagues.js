@@ -83,9 +83,35 @@ router.get('/leagues/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
     });
 });
 
+//Finalize League, Generate Schedule
+
+router.post('/leagues/:id', ensureLoggedIn('/login'), (req, res, next) => {
+   var updates
+    League.findById(req.params.id, function (err, league) { 
+        var updates = {
+            schedule: robin(league.teams.length, league.teams)
+        };
+        console.log(updates);
+        League.findByIdAndUpdate(req.params.id, updates, (err, league) => {
+            if (err) {
+                return res.render('leagues/edit', {
+                    league,
+                    errors: league.errors
+                });
+            }
+            if (!league) {
+                return next(new Error('404'));
+            }
+            return res.redirect(`/leagues/${league._id}`);
+        });
+    });
+
+
+    
+});
 // Handle Edit League Form Submission
 // Need Update: enter in schedule/game updates
-router.post('/leagues/:id', ensureLoggedIn('/login'), (req, res, next) => {
+router.post('/leagues/:id/update', ensureLoggedIn('/login'), (req, res, next) => {
     const updates = {
         leagueName: req.body.leagueName,
         description: req.body.description
