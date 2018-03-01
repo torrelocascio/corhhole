@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const moment = require('moment');
+const User = require('./user');
 const Team = require('./team');
 
 const LeagueSchema = new Schema({
     leagueName      : { type: String, required: [true, 'League Name is Required'] },
-    _creator        : { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    teams           : [],
+    _creator        : { type: Schema.Types.ObjectId, ref: 'User'},
+    teams           : [Team.schema],
     schedule        : [[]],
     // category        : { type: String, enum: TYPES, required: true },
     // _creator        : {ref: 'User', required: true },

@@ -19,7 +19,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User          = require('./models/user');
 const bcrypt        = require('bcrypt');
 
-mongoose.connect('mongodb://localhost:27017/cornhole');
+mongoose.connect('mongodb://localhost:27017/cornhole2');
 
 var index = require('./routes/index');
 var users = require('./routes/users');

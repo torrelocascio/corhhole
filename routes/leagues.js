@@ -1,8 +1,10 @@
 const express   = require('express');
-const League  = require('../models/league');
+
 const router    = express.Router();
 const { ensureLoggedIn } = require('connect-ensure-login');
 const robin = require('roundrobin')
+const Team = require('../models/team')
+const League  = require('../models/league');
 
 //User Home
 router.get('/myLeagues', function(req, res, next) {
@@ -17,33 +19,47 @@ router.get('/myLeagues', function(req, res, next) {
   //
 
 // Display Form to Create League
-router.get('/new', (req, res) => {
-    if (ensureLoggedIn){res.render('leagues/new')} else {res.redirect('/login')}
+router.get('/newleague', (req, res) => {
+    if (ensureLoggedIn){
+        res.render('leagues/new')
+    } else {
+        res.redirect('/login')
+    }
 });
 
 // Handle Create League Form Submission
-router.post('/new', ensureLoggedIn('/login'), (req, res, next) => {
+router.post('/newleague', ensureLoggedIn('/login'), (req, res, next) => {
+
+    //create loop to generated new teams based on length of DOM
+    // const newTeam = new Team ({
+    //     teamName : req.body.teamName[0]
+
+    // });
+console.log("im here")
     const newLeague = new League({
-        leagueName: req.body.leagueName,
-        description: req.body.description,
-        // This will throw an error is there's no
-        // User to associate the campaign with
-        _creator: req.user._id,
-        teams: req.body.teamName,
-        schedule: robin(req.body.teamName.length, req.body.teamName)
-        
-        // schedule: robin(req.params.numberOfTeams)
-        //also need array of teams names
+        leagueName: req.body.leagueName
+      
+
+    
     });
-    console.log(req.body.teamName)
-    newLeague.save((err) => {
+    // newLeague.save((err) => {
+    //     if (err) {
+    //         res.render('leagues/new', { league: newLeague});
+    //     } else {
+    //         res.redirect(`/leagues/${newLeague._id}`);
+    //     }
+
+        newLeague.save((err) => {
         if (err) {
+            console.log("err is:", err);
             res.render('leagues/new', { league: newLeague});
         } else {
-            res.redirect(`/leagues/${newLeague._id}`);
+            res.redirect(`/leagues/${newLeague._id}/process`)
         }
     }); 
 });
+
+
 
 // Show Individual League
 router.get('/leagues/:id', (req, res, next) => {
@@ -72,7 +88,7 @@ router.get('/leagues/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
 router.post('/leagues/:id', ensureLoggedIn('/login'), (req, res, next) => {
     const updates = {
         leagueName: req.body.leagueName,
-        description: req.body.description,
+        description: req.body.description
     };
 
     League.findByIdAndUpdate(req.params.id, updates, (err, league) => {
@@ -103,6 +119,60 @@ router.post('/:id/delete', (req, res, next) => {
 // delete
 
 router.post('/')
+
+//Route for League Creation In Process/Add Teams
+
+router.get('/leagues/:leagueId/process', (req, res, next) => {
+    
+    let leagueId = req.params.leagueId;
+    League.findById(leagueId, (err, league) => {
+     if (err) {next(err); }   
+        res.render('leagues/newTeam', {league: league})
+    })
+});
+
+
+//Post of New Team Request - Need to Find League by ID, and then
+//push teamName field into NEW TEAM
+
+router.post('/leagues/:leagueId/process', ensureLoggedIn('/login'), (req, res, next) => {
+    let leagueId = req.params.leagueId
+    
+    League.findById(leagueId, (err, league) => {
+        const newTeam = new Team({
+            teamName: req.body.teamName
+
+        })
+        console.log("Here is the leagueId",leagueId)
+        console.log("LOOK HERE!!!!!!!!!!!!!!!!!",league)
+        league.teams.push(newTeam);
+
+        league.save((err) => {
+            if (err) {return next(err);}
+            res.redirect(`/leagues/${league._id}/process`)
+        })
+    })
+
+    
+})
+
+    // League.findByIdAndUpdate(req.params.id, newTeam, (err, team) => {
+    //     if (err) {
+    //         return res.render('leagues/edit', {
+    //             team,
+    //             errors: team.errors
+    //         });
+    //     }
+    //     if (!team) {
+    //         return next(new Error('404'));
+    //     }
+    //     return res.redirect(`/leagues/${league._id}/process`);
+    // });
+
+    
+
+
+
 
 
 module.exports = router;

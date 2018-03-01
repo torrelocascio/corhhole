@@ -1,0 +1,30 @@
+  <section class="info-container">
+        <h2>Add Your Teams</h2>
+      </section>
+    
+      <!-- We create another section to indicate where we will be including
+      information about our items -->
+      <section id="items-list" class="container">
+        
+        <!-- Each individual div element with the class "item-row" will represent
+        one line item. -->
+        <form action="/leagues/<%=league._id%>/process" method="POST">
+        <div class="item row">
+
+          <div class="item-qty col-xs-3">
+            <label>Team Name</label>
+            <input name="teamName" class="quantity" value="">
+          </div>
+
+          <button type="submit" class="btn btn-success">Create Team</button>
+
+        </form>
+
+      </section>
+
+      <form action="/leagues/<%= league._id %>" method="POST">
+        <button type="submit" class="btn btn-delete">Finalize League and Generate Schedule</button>
+    
+      </form>
+      <!-- Container to hold total price of all products -->
+          
