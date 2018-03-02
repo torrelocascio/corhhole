@@ -17,15 +17,27 @@ a {
 
 .main-container {
   padding-top: 25px;
+ 
 }
 
 nav.navbar {
   box-shadow: 0px 4px 10px 0 rgba(22,22,22,0.08);
   margin-bottom: 0;
+  background-color: rgba(192,192,192,0.7);
+  border-color: rgb(189,47,44);
+  border-bottom-width:3px
 }
 
 .nav > li > a {
-  color: black;
+  -webkit-text-stroke: 1px rgb(21,64,106);
+  color:rgb(240,240,240);
+  font-size:1.3em;
+  text-shadow:
+  3px 3px 0 rgb(189,47,44),
+-1px -1px 0 rgb(189,47,44), 
+ 1px -1px 0 rgb(189,47,44),
+ -1px 1px 0 rgb(189,47,44),
+  1px 1px 0 rgb(189,47,44),
 }
 
 .nav > li.nav-logo {
@@ -39,7 +51,9 @@ nav.navbar {
 .nav-logo-image {
   height: 50px;
   width: 150px;
-  margin-top: -20px
+ margin-top:-10px
+  
+
 
 
 }
@@ -52,6 +66,7 @@ nav.navbar {
   color: black;
   padding: 15px;
   border: 0;
+  margin-top:10px
 }
 
 .home-heading {
@@ -74,7 +89,7 @@ nav.navbar {
 }
 .home-heading-wrapper > h1 {
   font-size: 5rem;
-  -webkit-text-stroke: 1px rgb(252, 7, 7);
+  -webkit-text-stroke: 1px rgb(189,47,44);
   color:rgb(240,240,240);
   text-shadow:
       3px 3px 0 rgb(252, 7, 7),
@@ -85,8 +100,8 @@ nav.navbar {
 }
 
 .home-heading-wrapper > p {
-  font-size: 1.5rem;
-  -webkit-text-stroke: 1px rgb(67, 86, 253);
+  font-size: 1.8rem;
+  -webkit-text-stroke: 1px rgb(21,64,106);
   color: white
 
 }
@@ -179,4 +194,13 @@ progress {
 
 .campaign-description {
   padding-right: 275px;
+}
+
+.btn-xlarge {
+  padding: 18px 28px;
+  font-size: 30px;
+  line-height: normal;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
 }

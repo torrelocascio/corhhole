@@ -19,7 +19,7 @@
         </a><br>
         Created By <span class="light-text"><%= league._creator %></span><br>
         <span class="light-text description">Number of Teams: <%= league.teams.length %></span>
-        <span class="light-text description">Description: <%= league.description %></span>
+        <form action="/:id/delete"><button type="submit" style="margin-top:20px">Delete League</button></form>
       </div>
     </div>
   <%  }) %>

@@ -1,8 +1,8 @@
 <div class="container campaign-container">
     <div class="row">
-
+<h1 style="margin-left:14px"><strong><%= league.leagueName %> </strong></h1>
       <div class="col-sm-6 float-left">
-        <h1><%= league.leagueName %> Standings</h1>
+        <h1>League Standings</h1>
         <% league.teams.forEach((team)=>{ %>
          <li class="list-group-item" style="background-color:rgb(38, 38, 148);color:whitesmoke; text-align:center"><%= team.teamName%> <% %> :    
           Wins:    <%=team.wins%> 
@@ -15,8 +15,8 @@
         <div class="campaign-time" style="margin-top:60px;padding-left:50px">
  
         </div>
-        <a class="btn backer-btn btn-warning" href="/leagues/<%=league._id%>/edit">Edit League Name</a>
-        <form action="/leagues/<%= league._id %>/delete" method="POST">
+        <a class="btn backer-btn btn-warning" style="margin-top:10px; padding-top:25px" href="/leagues/<%=league._id%>/edit">Edit League Name</a>
+        <form action="/leagues/<%=league._id %>/delete" method="POST">
           <button type="submit" class="btn backer-btn" style="background-color:red">Delete League</button>
         </form>
       </div>
@@ -24,12 +24,8 @@
   </div>
     </div>
     <div class="row">
-      <h2>Update Games</h2> 
-      <button>
-        <a href="/leagues/<%=league._id%>/updateResults">
-        UPDATE GAMES
-      </a>
-    </button>
+      <h2 style="margin-left:40px">Update Games</h2> 
+    
         <ul>
         
             <% league.schedule.forEach((game) => { %>

@@ -221,7 +221,7 @@ router.post('/leagues/:id/update', ensureLoggedIn('/login'), (req, res, next) =>
 router.post('/:id/delete', (req, res, next) => {
     const id = req.params.id;
   
-    League.findByIdAndRemove(id, (err, product) => {
+    League.findByIdAndRemove(id, (err, league) => {
       if (err){ return next(err); }
       return res.redirect('/leagues');
     });
@@ -270,51 +270,51 @@ router.post('/leagues/:leagueId/process', ensureLoggedIn('/login'), (req, res, n
 })
 
 //Post for Adding a Winner and Loser
-// router.post('/leagues/:leagueId/:teamId1/:teamId2/submitGame', ensureLoggedIn('/login'), (req, res, next) => {
-//     let leagueId = req.params.leagueId
-//     let teamId1 = req.params.teamId1
-//     let teamId2 = req.params.teamId2
-//     //If the first button = true, add win to first team and loss to second team
-//     Team.findById(teamId1, (err, team) => {
-//         team.wins = team.wins + 1
-//         team.save((err) => {
-//             if (err) {return next(err);}
-//             res.redirect(`/leagues/${league._id}`)
-//         })
-//         Team.findById(teamId2, (err, team) => {
-//             team.losses = team.losses+1
-//             team.save((err) => {
-//                 if (err) {return next(err);}
-//                 res.redirect(`/leagues/${league._id}`)
-//             })
-//         })
-//     })
+router.post('/leagues/:leagueId/:teamId1/:teamId2/submitGame', ensureLoggedIn('/login'), (req, res, next) => {
+    let leagueId = req.params.leagueId
+    let teamId1 = req.body.id.teamId1
+    let teamId2 = req.body.idteamId2
+    //If the first button = true, add win to first team and loss to second team
+    Team.findById(teamId1, (err, team) => {
+        team.wins = team.wins + 1
+        team.save((err) => {
+            if (err) {return next(err);}
+            res.redirect(`/leagues/${league._id}`)
+        })
+        Team.findById(teamId2, (err, team) => {
+            team.losses = team.losses+1
+            team.save((err) => {
+                if (err) {return next(err);}
+                res.redirect(`/leagues/${league._id}`)
+            })
+        })
+    })
 
-// //if the second button is selected
+//if the second button is selected
 
-// Team.findById(teamId1, (err, team) => {
+Team.findById(teamId1, (err, team) => {
 
-//     team.losses = team.losses + 1
+    team.losses = team.losses + 1
 
 
-//     team.save((err) => {
-//         if (err) {return next(err);}
-//         res.redirect(`/leagues/${league._id}`)
-//     })
+    team.save((err) => {
+        if (err) {return next(err);}
+        res.redirect(`/leagues/${league._id}`)
+    })
 
-//     Team.findById(teamId2, (err, team) => {
-//         team.wins = team.wins+1
-//         team.save((err) => {
-//             if (err) {return next(err);}
-//             res.redirect(`/leagues/${league._id}`)
-// })
+    Team.findById(teamId2, (err, team) => {
+        team.wins = team.wins+1
+        team.save((err) => {
+            if (err) {return next(err);}
+            res.redirect(`/leagues/${league._id}`)
+})
 
     
-// })
+})
 
-// })
+})
 
-// })
+})
 
 
 
