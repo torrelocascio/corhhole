@@ -1,5 +1,5 @@
   <section class="info-container">
-        <h2>Add Your Teams</h2>
+        <h2 style="margin-top:-40px">Add Your Teams</h2>
       </section>
     
       <!-- We create another section to indicate where we will be including
@@ -10,6 +10,7 @@
         one line item. -->
         <form action="/leagues/<%=league._id%>/process" method="POST">
         <div class="item row">
+         
 
           <div class="item-qty col-xs-3">
             <label>Team Name</label>
@@ -26,5 +27,22 @@
         <button type="submit" class="btn btn-delete">Finalize League and Generate Schedule</button>
     
       </form>
+
+      <div class="col-sm-10; pull-right" style="margin-top:-150px;margin-right:50px">
+    
+          <h3>League Name: <%= league.leagueName %></h3>
+          <h4 style="text-align:center">Teams Created <%=league.teams.length%></h4>
+          <% league.teams.forEach((team)=>{ %>
+           <li class="list-group-item" style="background-color:rgb(38, 38, 148);color:whitesmoke; text-align:center"><%= team.teamName%>
+            <%})%>
+  ``````                                                                                                             
+          </li>
+        </div>
+
+
+  
+       
+
+       
       <!-- Container to hold total price of all products -->
           

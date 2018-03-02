@@ -1,8 +1,6 @@
-<h1>
-  This is the Admin's Main Page - Will have a list of all leagues managed, create, and delete buttons. Time of when created.
-</h1>
- 
-    <button><a href="/newleague">Create League</a></button>
+
+ <div class="row" style="align-items: center">
+    <button class="btn btn-lg btn-success";"><a style="text-decoration:none; color:white" href="/newleague">Create League</a></button>
   
     <div class="campaign-row row">
     <h3 class="text-center">Your Leagues</h3>
@@ -12,13 +10,14 @@
         <div class="campaign-info-wrapper">
           League Name:
           <a class="title" href="/leagues/<%= league._id %>">
-            <strong><%= league.leagueName %></strong>
+            <h5><strong><%= league.leagueName %></strong></h5>
           </a><br>
           Created By <span class="light-text"><%= league._creator %></span><br>
           <span class="light-text description">Number of Teams: <%= league.teams.length %></span>
-          <span class="light-text description">Description: <%= league.description %></span>
+          <form action="/:id/delete"><button type="submit">Delete League</button></form>
         </div>
       </div>
     <%  }) %>
+  </div>
   </div>
 

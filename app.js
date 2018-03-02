@@ -12,7 +12,6 @@ const mongoose = require('mongoose');
 // Authentication / Authorization
 const passport = require('passport');
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
 
 // Passport Strategy & Configuration
 const LocalStrategy = require('passport-local').Strategy;
@@ -48,8 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'ironfundingdev',
   resave: false,
-  saveUninitialized: true,
-  store: new MongoStore( { mongooseConnection: mongoose.connection })
+  saveUninitialized: true
 }));
 
 // Passport Configuration
@@ -118,15 +116,23 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Authentication Configuration
-app.use( (req, res, next) => {
-  if (typeof(req.user) !== "undefined") {
-    res.locals.userSignedIn = true;
-  } else {
-    res.locals.userSignedIn = false;
+// // Authentication Configuration
+// app.use( (req, res, next) => {
+//   if (typeof(req.user) !== "undefined") {
+//     res.locals.userSignedIn = true;
+//   } else {
+//     res.locals.userSignedIn = false;
+//   }
+//   next();
+// });
+
+// IF THE USER IS LOGGED IN, TO HAVE USER AVAILALE THROUGH MY VIEWS
+app.use((req, res, next) => {
+  if(req.user){
+  res.locals.user = req.user;
   }
   next();
-});
+})
 
 app.use('/', index);
 app.use('/users', users);

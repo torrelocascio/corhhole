@@ -7,7 +7,7 @@
       <div class="col-sm-10">
         <h1><%= league.leagueName %> Standings</h1>
         <% league.teams.forEach((team)=>{ %>
-         <li>Team Name: <%= team.teamName%> <% %> , 
+         <li class="list-group-item" style="background-color:rgb(38, 38, 148);color:whitesmoke; text-align:center"><%= team.teamName%> <% %> , 
           Wins: <%=team.wins%> 
           , Losses: <%=team.losses%>
           <%})%>
@@ -16,7 +16,12 @@
       </div>
     </div>
     <div class="row">
-      <h2>Update Games</h2> <button>Edit</button>
+      <h2>Update Games</h2> 
+      <button>
+        <a href="/leagues/<%=league._id%>/updateResults">
+        UPDATE GAMES
+      </a>
+    </button>
         <ul>
         
             <% league.schedule.forEach((game) => { %>
@@ -27,7 +32,7 @@
                     ------------
                     <% }) %>
                    
-                    <form action="/leagues/<%=league._id%>/submitgame" method="POST">
+                    <form action=""" method="POST">
                     <input type="radio" id="contactChoice1"
                     name="contact" value="homeTeamWins">
                    <label for="contactChoice1"><%=pair[0].teamName%> Wins</label>
@@ -40,11 +45,7 @@
                   <label for="contactChoice2">Game Not Played</label>
                   <button type="submit">Submit</button>
                   </form>
-                    <% }) %>
-                    
-                  
-                    
-                
+                    <% }) %>    
             <% }) %>
         </ul>
       <div class="col-sm-8">
